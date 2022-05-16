@@ -56,6 +56,11 @@ class EldenRingMod:
         second_level = int.from_bytes(pymem.memory.read_bytes(self.pm.process_handle, first_level + 0x08, 8), "little")
         return second_level
 
+    def get_deaths(self):
+        first_level = int.from_bytes(pymem.memory.read_bytes(self.pm.process_handle, self.stats_base_address_pointer, 8),
+                                     "little")
+        return int.from_bytes(pymem.memory.read_bytes(self.pm.process_handle, first_level + 0x94, 4), "little")
+
     def get_level_address(self):
         return self.get_stats_base_address() + 0x68
 

@@ -1,5 +1,6 @@
 import asyncio
 import math
+from contextlib import suppress
 
 from elden_ring import EldenRingMod
 import os
@@ -52,7 +53,10 @@ def callback_bits(uuid: UUID, data: dict) -> None:
 
 def give_runes_for_level():
     next_level = elden_ring.get_level()+1
-    runes_required = math.ceil(0.02*(next_level**3) + 3.06*(next_level**2) + 105.6*next_level - 895)
+    if next_level > 12:
+        runes_required = math.ceil(0.02*(next_level**3) + 3.06*(next_level**2) + 105.6*next_level - 895)
+    else:
+        runes_required = [0,0,673,689,706,723,740,757,775,793,811,829,847][next_level]
     elden_ring.set_runes(elden_ring.get_runes()+runes_required)
     play_local_sound("thankyou")
 
@@ -99,3 +103,19 @@ def play_local_sound(sound):
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, f'sounds\\{sound}.wav')
         playsound(filename)
+
+
+async def write_death_counter():
+    dirname = os.getcwd()
+    filename = os.path.join(dirname, f'deaths.txt')
+    print(f"Writing to {filename}")
+    deaths = 0
+    while True:
+        with suppress(Exception):
+            new_deaths = elden_ring.get_deaths()
+            if deaths != new_deaths:
+                with open(filename, mode='w') as f:
+                    f.write(str(new_deaths))
+                deaths = new_deaths
+                play_local_sound("lose_horn")
+        await asyncio.sleep(1)

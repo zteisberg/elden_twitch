@@ -1,2 +1,6 @@
 venv
 .idea
+src/deaths.txt
+deaths.txt
+output
+src/__pycache__/

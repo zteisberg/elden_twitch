@@ -3,7 +3,7 @@ from pymem.pattern import scan_pattern_page
 
 def pattern_find_allocated(handle, pattern):
     base_address = 0x10000000000
-    max_address = 0x1FFFFFFFFFF
+    max_address = 0x2FFFFFFFFFF
     page_address = base_address
     found = None
     while page_address < max_address:

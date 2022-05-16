@@ -1,3 +1,5 @@
+import asyncio
+
 from twitchAPI import UserAuthenticator
 from twitchAPI.pubsub import PubSub
 from twitchAPI.twitch import Twitch
@@ -35,6 +37,7 @@ def start_sub():
     uuids.append(pubsub.listen_channel_points(user_id, callbacks.callback_channel_points))
     uuids.append(pubsub.listen_bits(user_id, callbacks.callback_bits))
     uuids.append(pubsub.listen_channel_subscriptions(user_id, callbacks.callback_subs))
+    asyncio.run(callbacks.write_death_counter())
     input('press ENTER to close...')
     print()
     for uuid in uuids:
