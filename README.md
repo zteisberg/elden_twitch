@@ -27,14 +27,14 @@ flowchart TD
 ## Chapters
 
 1. [Twitch Event Handlers
-](01_twitch_event_handlers_.md)
+](./01_twitch_event_handlers_.md)
 2. [Elden Ring Game API
-](02_elden_ring_game_api_.md)
+](./02_elden_ring_game_api_.md)
 3. [Twitch Event Listener
-](03_twitch_event_listener_.md)
+](./03_twitch_event_listener_.md)
 4. [Game State Monitor
-](04_game_state_monitor_.md)
+](./04_game_state_monitor_.md)
 5. [Memory Address Discovery
-](05_memory_address_discovery_.md)
+](./05_memory_address_discovery_.md)
 
 ---

@@ -43,7 +43,7 @@ def callback_channel_points(uuid: UUID, data: dict) -> None:
 2.  The `data` input contains all the information about the Twitch event. We extract the `reward` name from this data (e.g., "Kill Player").
 3.  The `if reward == "Kill Player":` line is our "if-then" rule. If the reward matches, the code inside this block runs.
 4.  `play_local_sound("gotcha")` plays a sound effect locally on your computer.
-5.  `elden_ring.set_hp(0)` is the crucial part: it tells the Elden Ring game to set your character's Health Points (HP) to zero, instantly killing them! (We'll learn more about `elden_ring` in the next chapter: [Elden Ring Game API](02_elden_ring_game_api_.md)).
+5.  `elden_ring.set_hp(0)` is the crucial part: it tells the Elden Ring game to set your character's Health Points (HP) to zero, instantly killing them! (We'll learn more about `elden_ring` in the next chapter: [Elden Ring Game API](./02_elden_ring_game_api_.md)).
 
 Twitch Event Handlers aren't just for Channel Points. They also handle other events like Bits donations:
 
@@ -141,10 +141,10 @@ sequenceDiagram
 
 1.  **Viewer Action:** A viewer initiates an action on Twitch (like redeeming Channel Points).
 2.  **Twitch Notifies App:** Twitch sends a message containing the event details to our `Elden Twitch App`.
-3.  **Event Listener:** Inside our app, a special component called the [Twitch Event Listener](03_twitch_event_listener_.md) (which we'll cover later!) is always listening. It receives the message and knows which handler function to call.
+3.  **Event Listener:** Inside our app, a special component called the [Twitch Event Listener](./03_twitch_event_listener_.md) (which we'll cover later!) is always listening. It receives the message and knows which handler function to call.
 4.  **Handler Invoked:** The `Elden Twitch App` calls the appropriate event handler function, in this case, `callback_channel_points`.
 5.  **Handler Logic:** The `Channel Points Handler` function (our `callback_channel_points`) processes the `data` it received. It checks the reward name and finds the "Kill Player" rule.
-6.  **Game Interaction:** Based on the rule, the handler calls functions from the [Elden Ring Game API](02_elden_ring_game_api_.md) (like `set_hp(0)`) to modify the game. It also plays local sounds.
+6.  **Game Interaction:** Based on the rule, the handler calls functions from the [Elden Ring Game API](./02_elden_ring_game_api_.md) (like `set_hp(0)`) to modify the game. It also plays local sounds.
 7.  **Result:** The game state changes (your player dies!), and you and your viewers see the effect instantly on stream.
 
 ## A Peek Behind the Curtain in `src/callbacks.py`
@@ -169,7 +169,7 @@ elden_ring = EldenRingMod()       # Create an 'elden_ring' object we can use
 
 You've learned that Twitch Event Handlers are the core "rules" that translate viewer actions on Twitch into exciting events within your Elden Ring game. They use `if-then` logic, can manage temporary effects with timers, and enhance the experience with sound effects. You've also seen how they use a special `elden_ring` object to talk to the game.
 
-But how exactly does `elden_ring.set_hp(0)` actually change your health in the game? How does it communicate with Elden Ring? That's what we'll dive into in the next chapter, where we explore the powerful [Elden Ring Game API](02_elden_ring_game_api_.md)!
+But how exactly does `elden_ring.set_hp(0)` actually change your health in the game? How does it communicate with Elden Ring? That's what we'll dive into in the next chapter, where we explore the powerful [Elden Ring Game API](./02_elden_ring_game_api_.md)!
 
 ---
 
